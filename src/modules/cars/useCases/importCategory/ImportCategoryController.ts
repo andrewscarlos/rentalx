@@ -2,12 +2,10 @@ import { Response, Request } from "express";
 import { ImportCategoryUseCase } from "./ImportCategoryUseCase";
 
 export class ImportCategoryController {
-    constructor(private importCategoryUseCase:ImportCategoryUseCase){
-
-    }
+  constructor(private importCategoryUseCase: ImportCategoryUseCase) {}
   handle(request: Request, response: Response): Response {
-      const { file } = request;
-      this.importCategoryUseCase.execute(file)
-      return response.send();
+    const { file } = request;
+    this.importCategoryUseCase.execute(file);
+    return response.send();
   }
 }
