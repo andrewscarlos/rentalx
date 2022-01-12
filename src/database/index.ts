@@ -6,7 +6,7 @@ interface IOptions {
 
 getConnectionOptions().then(options => {
   const newOptions = options as IOptions;
-  newOptions.host = 'datanase_ignore'; //Essa opção deverá ser EXATAMENTE o nome dado ao service do banco de dados
+  newOptions.host = 'datanase_ignore'; 
   createConnection({
     ...options,
   });

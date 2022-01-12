@@ -1,4 +1,4 @@
-import { Specification } from "../../model/Spacification";
+import { Specification } from "../../entities/Spacification";
 import {
   ICreateSpacificationDTO,
   ISpacificationRepository,
