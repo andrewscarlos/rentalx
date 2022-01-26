@@ -10,10 +10,10 @@ export class CategoriesRepository implements ICategoryRepository {
 
  constructor() {
     this.repository = getRepository(Category);
-  }
+  };
 
   async create({ name, description }: ICreateCategoryDTO): Promise<void> {
-    const categoty = this.repository.create({
+    const categoty =  this.repository.create({
       name,
       description,
     });
