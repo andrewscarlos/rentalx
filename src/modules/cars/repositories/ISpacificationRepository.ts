@@ -1,4 +1,4 @@
-import { Specification } from "../entities/Spacification";
+import { Specifications } from "../entities/Spacifications";
 
 export interface ICreateSpacificationDTO {
   name: string;
@@ -6,6 +6,6 @@ export interface ICreateSpacificationDTO {
 }
 
 export interface ISpacificationRepository {
-  create({ name, description }: ICreateSpacificationDTO): void;
-  findByName(name: string):Specification
+  create({ name, description }: ICreateSpacificationDTO): Promise<void>;
+  findByName(name: string):Promise<Specifications>
 }

@@ -1,28 +1,22 @@
-import { Specification } from "../../entities/Spacification";
+import { getRepository, Repository } from "typeorm";
+import { Specifications } from "../../entities/Spacifications";
 import {
   ICreateSpacificationDTO,
   ISpacificationRepository,
 } from "../ISpacificationRepository";
 
 export class SpacificationRepository implements ISpacificationRepository {
-  private spacification: Specification[];
-  constructor() {
-    this.spacification = [];
-  }
-  create({ name, description }: ICreateSpacificationDTO): void {
-    const spapacification = new Specification();
-    Object.assign(spapacification, {
-      name,
-      description,
-      createdAt: new Date(),
-    });
+  private repository: Repository<Specifications>;
 
-    this.spacification.push(spapacification);
+  constructor() {
+    this.repository = getRepository(Specifications);
   }
-  findByName(name: string): Specification {
-    const spacification = this.spacification.find(
-      (spacification) => spacification.name === name
-    );
+  async create({ name, description }: ICreateSpacificationDTO): Promise<void> {
+    const spacification = this.repository.create({ name, description });
+    await this.repository.save(spacification);
+  }
+  async findByName(name: string): Promise<Specifications> {
+    const spacification = await this.repository.findOne({ name });
     return spacification;
   }
 }

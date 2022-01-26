@@ -1,7 +1,7 @@
 import "reflect-metadata";
 import { createConnection, getConnectionOptions } from 'typeorm';
 import { Category } from "../modules/cars/entities/Category";
-import { Specification } from "../modules/cars/entities/Spacification";
+import { Specifications } from "../modules/cars/entities/Spacifications";
 
 interface IOptions {
   host: string;
@@ -13,7 +13,7 @@ getConnectionOptions().then(options => {
   const newOptions = options as IOptions;
   
   newOptions.host = 'datanase_ignore'; 
-  newOptions.entities = [Category, Specification]
+  newOptions.entities = [Category, Specifications]
   
   createConnection({
     ...options,

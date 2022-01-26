@@ -10,15 +10,16 @@ export class CreateSpacificationUseCase {
   constructor(
     @inject("SpacificationRepository")
     private specificationsRepository: ISpacificationRepository
-    ) {}
+  ) {}
 
-  execute({ name, description }: IRequest): void {
-    const spacificationAlreadyExists =
-      this.specificationsRepository.findByName(name);
-    if (spacificationAlreadyExists) {
-      throw new Error("Already Exist Specification");
+  async execute({ name, description }: IRequest): Promise<void> {
+    console.log('bateu na execute')
+    const alredyExists = await this.specificationsRepository.findByName(name);
+    console.log('alredyExists',alredyExists)
+    if (alredyExists) {
+      throw new Error("Category Already Exists!");
     }
-    this.specificationsRepository.create({
+    await this.specificationsRepository.create({
       name,
       description,
     });

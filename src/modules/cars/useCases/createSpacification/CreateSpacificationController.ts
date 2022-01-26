@@ -1,13 +1,17 @@
+import { CreateSpacificationUseCase } from "./CreateSpacificationUseCase";
 import { Response, Request } from "express";
 import { container } from "tsyringe";
-import { CreateSpacificationUseCase } from "./CreateSpacificationUseCase";
+
 
 export class CreateSpacificationController {
-
-  handle(request: Request, response: Response): Response {
+  async handle(request: Request, response: Response): Promise<Response> {
+    console.log('bateu na handle')
     const { name, description } = request.body;
-    const createSpacificationUseCase = container.resolve(CreateSpacificationUseCase)
-    createSpacificationUseCase.execute({ name, description });
-    return response.status(201).send();
+    const createSpacificationUseCase = container.resolve(
+      CreateSpacificationUseCase
+    );
+    const responses = await createSpacificationUseCase.execute({ name, description });
+    console.log('responses',responses)
+    return response.status(201).send(); 
   }
 }

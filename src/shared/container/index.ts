@@ -10,4 +10,4 @@ import { ISpacificationRepository } from "../../modules/cars/repositories/ISpaci
 // ICategoriesRepository
 container.registerSingleton<ICategoryRepository>("CategoriesRepository",delay(() => CategoriesRepository))
 
-// container.registerSingleton<ISpacificationRepository>("SpacificationRepository",SpacificationRepository)
+container.registerSingleton<ISpacificationRepository>("SpacificationRepository",delay(() => SpacificationRepository) )
