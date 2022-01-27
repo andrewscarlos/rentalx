@@ -1,9 +1,8 @@
 import { getRepository, Repository } from "typeorm";
-import { Specifications } from "../../entities/Spacifications";
-import {
-  ICreateSpacificationDTO,
-  ISpacificationRepository,
-} from "../ISpacificationRepository";
+import { ICreateSpacificationDTO } from "../dtos/ICreateSpacificationDTO";
+import { Specifications } from "../entities/Spacifications";
+import {  ISpacificationRepository } from "../interfaces/ISpacificationRepository";
+
 
 export class SpacificationRepository implements ISpacificationRepository {
   private repository: Repository<Specifications>;

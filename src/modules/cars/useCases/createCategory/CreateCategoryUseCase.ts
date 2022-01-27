@@ -1,4 +1,4 @@
-import { ICategoryRepository } from "../../repositories/ICategoriesRepository";
+import { ICategoryRepository } from "../../interfaces/ICategoriesRepository";
 import { inject, injectable } from "tsyringe";
 
 interface IRequest {

@@ -1,13 +1,23 @@
 import "reflect-metadata";
 import { container, delay } from "tsyringe";
+import { IUsersRepository } from "../../modules/accounts/interfaces/IUsersRepository";
+import { UserRepository } from "../../modules/accounts/repositories/UserRepository";
 
-import { ICategoryRepository } from "../../modules/cars/repositories/ICategoriesRepository";
-import { CategoriesRepository } from "../../modules/cars/repositories/implementations/CategoriesRepository";
+import { ICategoryRepository } from "../../modules/cars/interfaces/ICategoriesRepository";
 
-import { SpacificationRepository } from "../../modules/cars/repositories/implementations/SpacificationRepository";
-import { ISpacificationRepository } from "../../modules/cars/repositories/ISpacificationRepository";
+import { ISpacificationRepository } from "../../modules/cars/interfaces/ISpacificationRepository";
+import { CategoriesRepository } from "../../modules/cars/repositories/CategoriesRepository";
+import { SpacificationRepository } from "../../modules/cars/repositories/SpacificationRepository";
 
 // ICategoriesRepository
-container.registerSingleton<ICategoryRepository>("CategoriesRepository",delay(() => CategoriesRepository))
+container.registerSingleton<ICategoryRepository>(
+  "CategoriesRepository",
+  CategoriesRepository
+);
 
-container.registerSingleton<ISpacificationRepository>("SpacificationRepository",delay(() => SpacificationRepository) )
+container.registerSingleton<ISpacificationRepository>(
+  "SpacificationRepository",
+  SpacificationRepository
+);
+
+container.registerSingleton<IUsersRepository>("UserRepository", UserRepository);

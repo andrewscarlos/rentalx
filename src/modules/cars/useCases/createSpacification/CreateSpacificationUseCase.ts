@@ -1,5 +1,5 @@
 import { inject, injectable } from "tsyringe";
-import { ISpacificationRepository } from "../../repositories/ISpacificationRepository";
+import { ISpacificationRepository } from "../../interfaces/ISpacificationRepository";
 
 export interface IRequest {
   name: string;
@@ -13,9 +13,9 @@ export class CreateSpacificationUseCase {
   ) {}
 
   async execute({ name, description }: IRequest): Promise<void> {
-    console.log('bateu na execute')
+ 
     const alredyExists = await this.specificationsRepository.findByName(name);
-    console.log('alredyExists',alredyExists)
+ 
     if (alredyExists) {
       throw new Error("Category Already Exists!");
     }

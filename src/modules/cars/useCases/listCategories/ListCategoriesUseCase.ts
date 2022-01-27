@@ -1,6 +1,6 @@
 import { inject, injectable } from "tsyringe";
 import { Category } from "../../entities/Category";
-import { ICategoryRepository } from "../../repositories/ICategoriesRepository";
+import { ICategoryRepository } from "../../interfaces/ICategoriesRepository";
 
 @injectable()
 export class ListCategoreisUseCase {
