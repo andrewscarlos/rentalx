@@ -4,6 +4,7 @@ import { IUsersRepository } from "../../interfaces/IUsersRepository";
 import { compare } from "bcrypt";
 import { sign } from "jsonwebtoken";
 import { IResponse } from "../../interfaces/IResponse";
+import { AppError } from "../../../../err/AppError";
 
 @injectable()
 export class AuthenticateUserUseCase {
@@ -15,13 +16,13 @@ export class AuthenticateUserUseCase {
     const user = await this.usersRepository.findByEmail(email);
 
     if (!user) {
-      throw new Error("Email or password incorrect!");
+      throw new AppError("Email or password incorrect!");
     }
 
     const passwordMatch = await compare(password, user.password);
 
     if (!passwordMatch) {
-      throw new Error("Email or password incorrect!");
+      throw new AppError("Email or password incorrect!");
     }
 
     const token = sign({}, "3fed4e3e33724a71a255dc7275bc7fc", {

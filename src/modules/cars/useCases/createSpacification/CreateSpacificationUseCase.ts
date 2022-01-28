@@ -1,4 +1,5 @@
 import { inject, injectable } from "tsyringe";
+import { AppError } from "../../../../err/AppError";
 import { ISpacificationRepository } from "../../interfaces/ISpacificationRepository";
 
 export interface IRequest {
@@ -17,7 +18,7 @@ export class CreateSpacificationUseCase {
     const alredyExists = await this.specificationsRepository.findByName(name);
  
     if (alredyExists) {
-      throw new Error("Category Already Exists!");
+      throw new AppError("Category Already Exists!");
     }
     await this.specificationsRepository.create({
       name,
