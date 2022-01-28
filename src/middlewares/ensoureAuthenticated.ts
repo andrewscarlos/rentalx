@@ -4,7 +4,7 @@ import { AppError } from "../err/AppError";
 import { UserRepository } from "../modules/accounts/repositories/UserRepository";
 import { IPayload } from "./IPayload";
 
-export const asyncensureAuthenticated = async (
+export const  ensureAuthenticated = async (
   request: Request,
   response: Response,
   next: NextFunction
@@ -14,7 +14,7 @@ export const asyncensureAuthenticated = async (
   const authHeader = request.headers.authorization;
 
   if (!authHeader) {
-    throw new AppError("Token Missing",401);
+    throw new AppError("Token Missing", 401);
   }
 
   const [, token] = authHeader.split(" ");
@@ -27,11 +27,14 @@ export const asyncensureAuthenticated = async (
 
     const userRepository = new UserRepository();
     const user = await userRepository.findById(userId);
-    if(!user){
-        throw new AppError("User does not exists!",401)
+    if (!user) {
+      throw new AppError("User does not exists!", 401);
     }
+    request.user = {
+      id: userId,
+    };
     next();
   } catch {
-    throw new AppError("Invalid token!",401);
+    throw new AppError("Invalid token!", 401);
   }
 };
